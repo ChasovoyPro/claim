@@ -46,6 +46,18 @@
     #mineStatus { font-size: 1.4rem; min-height: 2.4em; padding: 0 16px; max-width: 600px; color: #ffe3b0; text-shadow: 0 2px 0 #1a0f0a; }
     #mineHit { background: linear-gradient(#c9772a, #a5561a); border: 3px solid #3b2216; border-radius: 14px; box-shadow: inset 0 2px 0 #ffc47a, 0 5px 0 #3b2216; text-shadow: 0 2px 0 #5a2e0e; letter-spacing: .03em; margin-bottom: 9px; }
     #mineHit:active { background: linear-gradient(#a5561a, #8a4a12); box-shadow: inset 0 2px 0 #c9772a, 0 1px 0 #3b2216; transform: translateY(4px); }
+    #houseScene { width: min(100%, 640px); aspect-ratio: 5 / 3; box-sizing: border-box; border: 3px solid #3b2216; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #6b4527, 0 6px 18px rgba(0, 0, 0, .45); }
+    #houseScene svg { width: 100%; height: 100%; display: block; }
+    #houseScene [id$="-hit"] { cursor: pointer; }
+    #houseInfo { min-height: 1.4em; padding: 4px 16px; color: #ffd27a; border: 2px solid #3b2216; border-radius: 999px; background: #3a281b; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .25); }
+    #houseList { display: flex; flex-wrap: wrap; justify-content: center; max-width: 640px; }
+    #houseList button { font-size: .95rem; padding: 8px 12px; background: #3a281b; border: 2px solid #3b2216; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .3); }
+    #houseList button[aria-pressed="true"] { background: #b5651d; }
+    #houseCard { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border: 2px solid #1a0f09; border-radius: 12px; padding: 12px 16px; text-align: left; box-shadow: inset 0 2px 0 rgba(255, 196, 122, .22), 0 3px 0 #1a0f09; }
+    #houseCard h3 { color: #ffd27a; margin: 4px 0; }
+    #houseCard p { margin: 4px 0; }
+    #houseCard ul { margin: 4px 0; padding-left: 20px; font-size: .95rem; }
+    #houseBack { background: linear-gradient(#c9772a, #a5561a); border: 3px solid #3b2216; border-radius: 14px; box-shadow: inset 0 2px 0 #ffc47a, 0 5px 0 #3b2216; margin-bottom: 9px; }
     #panel { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border: 2px solid #1a0f09; border-radius: 12px; padding: 12px 16px; text-align: left; box-shadow: inset 0 2px 0 rgba(255, 196, 122, .22), 0 3px 0 #1a0f09; }
     #panel h3 { color: #ffd27a; }
     #town button { border: 2px solid #1a0f09; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .5), inset 0 -3px 0 #7a3f12; }
@@ -56,7 +68,7 @@
     #dialogBox { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 14px 14px 0 0; padding: 20px; text-align: left; }
     #dialogText { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
   </style>
-  <script type="module" crossorigin src="./assets/index-CaRMTKHu.js"></script>
+  <script type="module" crossorigin src="./assets/index-BeH7uwjD.js"></script>
 </head>
 <body>
   <div id="app">
@@ -64,7 +76,7 @@
       <div id="hud"></div>
       <div id="chapter"><span id="chapterTxt"></span><div id="chapterBar"><i id="chapterFill"></i></div></div>
       <div id="goal"></div>
-      <div id="meta"><button id="fameBtn" hidden>Слава</button></div>
+      <div id="meta"><button id="fameBtn" hidden>Слава</button><button id="houseBtn" hidden>Дом</button></div>
       <div id="townScene"></div>
       <div id="panel" hidden></div>
       <div id="credit">© 2026 ChasovoyPro · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · claim.chasovoy.pro</div>
@@ -81,6 +93,13 @@
       <div id="mineStatus"></div>
       <div id="mineBag"></div>
       <button id="mineHit">Ударить</button>
+    </section>
+    <section id="house" hidden>
+      <div id="houseInfo"></div>
+      <div id="houseScene"></div>
+      <div id="houseList"></div>
+      <div id="houseCard" hidden></div>
+      <button id="houseBack">В город</button>
     </section>
   </div>
   <div id="dialog" hidden>
