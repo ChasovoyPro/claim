@@ -21,6 +21,8 @@
     section { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: auto 0; }
     #scene, #townScene { width: min(100%, 640px); aspect-ratio: 5 / 3; }
     #scene svg, #townScene svg { width: 100%; height: 100%; display: block; }
+    #townScene { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; } /* в главе 2 улица длиннее, ширина svg задаётся из town.ts */
+    #townScene::-webkit-scrollbar { display: none; }
     #hud { font-size: 1.1rem; }
     #chapter { width: min(100%, 640px); font-size: .9rem; opacity: .9; }
     #chapterBar { height: 6px; background: #3a281b; border-radius: 3px; overflow: hidden; margin-top: 2px; }
@@ -34,7 +36,12 @@
     button { font: inherit; font-size: 1.15rem; padding: 12px 26px; border: 0; border-radius: 10px; background: #b5651d; color: #fff; margin: 4px; }
     button:active { background: #8a4a12; }
     button:disabled { opacity: .4; }
-    #fire { font-size: 1.6rem; padding: 18px 56px; }
+    #fire, #mineHit { font-size: 1.6rem; padding: 18px 56px; }
+    #mineScene { width: min(100%, 640px); aspect-ratio: 5 / 3; touch-action: manipulation; cursor: pointer; }
+    #mineScene svg { width: 100%; height: 100%; display: block; }
+    #mineInfo { color: #ffd27a; min-height: 1.4em; }
+    #mineStatus { font-size: 1.4rem; min-height: 2.4em; padding: 0 16px; max-width: 600px; }
+    #mineBag { font-size: .95rem; opacity: .85; min-height: 1.4em; }
     #panel { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 12px; padding: 12px 16px; text-align: left; }
     #panel h3, #panel p { margin: 4px 0; }
     #town { cursor: pointer; }
@@ -42,7 +49,7 @@
     #dialogBox { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 14px 14px 0 0; padding: 20px; text-align: left; }
     #dialogText { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
   </style>
-  <script type="module" crossorigin src="./assets/index-9pnqenc_.js"></script>
+  <script type="module" crossorigin src="./assets/index-DKJSReS6.js"></script>
 </head>
 <body>
   <div id="app">
@@ -60,6 +67,13 @@
       <div id="scene"></div>
       <div id="status"></div>
       <button id="fire">Огонь</button>
+    </section>
+    <section id="mine" hidden>
+      <div id="mineInfo"></div>
+      <div id="mineScene"></div>
+      <div id="mineStatus"></div>
+      <div id="mineBag"></div>
+      <button id="mineHit">Ударить</button>
     </section>
   </div>
   <div id="dialog" hidden>
