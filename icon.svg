@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#24153a"/><stop offset="0.45" stop-color="#7a2a52"/>
+      <stop offset="0.75" stop-color="#e8603a"/><stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#ffd27a" stop-opacity="0.9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#sky)"/>
+  <circle cx="256" cy="236" r="210" fill="url(#glow)"/>
+  <circle cx="256" cy="236" r="112" fill="#ffe3a0"/>
+  <polygon points="0,400 0,350 60,322 120,352 180,330 240,400" fill="#5a2347"/>
+  <polygon points="272,400 340,334 400,356 452,316 512,350 512,400" fill="#5a2347"/>
+  <rect y="392" width="512" height="120" fill="#1a0c14"/>
+  <g fill="#0b0608">
+    <ellipse cx="256" cy="268" rx="176" ry="24"/>
+    <path d="M168,262 Q170,166 256,156 Q342,166 344,262 Z"/>
+    <path d="M56,512 L96,430 Q256,380 416,430 L456,512 Z"/>
+  </g>
+  <rect x="168" y="238" width="176" height="14" fill="#a8482f"/>
+</svg>
