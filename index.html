@@ -23,10 +23,11 @@
     #scene svg, #townScene svg { width: 100%; height: 100%; display: block; }
     #townScene { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; } /* в главе 2 улица длиннее, ширина svg задаётся из town.ts */
     #townScene::-webkit-scrollbar { display: none; }
-    #hud { font-size: 1.1rem; }
-    #chapter { width: min(100%, 640px); font-size: .9rem; opacity: .9; }
-    #chapterBar { height: 6px; background: #3a281b; border-radius: 3px; overflow: hidden; margin-top: 2px; }
-    #chapterFill { display: block; height: 100%; width: 0; background: #ffd27a; transition: width .4s; }
+    #townScene { box-sizing: border-box; border: 2px solid #1a0f09; border-radius: 10px; }
+    #hud { max-width: calc(100% - 24px); box-sizing: border-box; font-size: 1.1rem; background: #3a281b; color: #ffe3a0; border: 2px solid #1a0f09; border-radius: 10px; padding: 5px 14px; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .35), 0 2px 0 #1a0f09; }
+    #chapter { width: min(100%, 640px); box-sizing: border-box; padding: 0 12px; font-size: .9rem; opacity: .9; }
+    #chapterBar { height: 8px; background: #1f140d; border: 2px solid #1a0f09; border-radius: 6px; overflow: hidden; margin-top: 3px; box-shadow: 0 1px 0 rgba(255, 196, 122, .15); }
+    #chapterFill { display: block; height: 100%; width: 0; background: linear-gradient(#ffe3a0, #e8a03a); box-shadow: inset 0 -2px 0 rgba(122, 63, 18, .5); transition: width .4s; }
     #credit { font-size: .75rem; opacity: .5; padding: 4px 12px; }
     #credit a { color: inherit; }
     #meta button { padding: 6px 18px; font-size: 1rem; }
@@ -37,19 +38,25 @@
     button:active { background: #8a4a12; }
     button:disabled { opacity: .4; }
     #fire, #mineHit { font-size: 1.6rem; padding: 18px 56px; }
-    #mineScene { width: min(100%, 640px); aspect-ratio: 5 / 3; touch-action: manipulation; cursor: pointer; }
+    #mineScene { width: min(100%, 640px); aspect-ratio: 5 / 3; touch-action: manipulation; cursor: pointer; box-sizing: border-box; border: 3px solid #3b2216; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #6b4527, 0 6px 18px rgba(0, 0, 0, .45); }
     #mineScene svg { width: 100%; height: 100%; display: block; }
-    #mineInfo { color: #ffd27a; min-height: 1.4em; }
-    #mineStatus { font-size: 1.4rem; min-height: 2.4em; padding: 0 16px; max-width: 600px; }
-    #mineBag { font-size: .95rem; opacity: .85; min-height: 1.4em; }
-    #panel { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 12px; padding: 12px 16px; text-align: left; }
+    #mineInfo, #mineBag { min-height: 1.4em; padding: 4px 16px; border: 2px solid #3b2216; border-radius: 999px; background: #3a281b; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .25); }
+    #mineInfo { color: #ffd27a; letter-spacing: .02em; }
+    #mineBag { font-size: .95rem; color: #f3e3c3; }
+    #mineStatus { font-size: 1.4rem; min-height: 2.4em; padding: 0 16px; max-width: 600px; color: #ffe3b0; text-shadow: 0 2px 0 #1a0f0a; }
+    #mineHit { background: linear-gradient(#c9772a, #a5561a); border: 3px solid #3b2216; border-radius: 14px; box-shadow: inset 0 2px 0 #ffc47a, 0 5px 0 #3b2216; text-shadow: 0 2px 0 #5a2e0e; letter-spacing: .03em; margin-bottom: 9px; }
+    #mineHit:active { background: linear-gradient(#a5561a, #8a4a12); box-shadow: inset 0 2px 0 #c9772a, 0 1px 0 #3b2216; transform: translateY(4px); }
+    #panel { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border: 2px solid #1a0f09; border-radius: 12px; padding: 12px 16px; text-align: left; box-shadow: inset 0 2px 0 rgba(255, 196, 122, .22), 0 3px 0 #1a0f09; }
+    #panel h3 { color: #ffd27a; }
+    #town button { border: 2px solid #1a0f09; box-shadow: inset 0 1px 0 rgba(255, 196, 122, .5), inset 0 -3px 0 #7a3f12; }
+    #town button:active { box-shadow: inset 0 2px 0 #5e2f0c; }
     #panel h3, #panel p { margin: 4px 0; }
     #town { cursor: pointer; }
     #dialog { position: fixed; inset: 0; background: rgba(0, 0, 0, .55); display: flex; align-items: flex-end; justify-content: center; }
     #dialogBox { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 14px 14px 0 0; padding: 20px; text-align: left; }
     #dialogText { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
   </style>
-  <script type="module" crossorigin src="./assets/index-CeL_mqEK.js"></script>
+  <script type="module" crossorigin src="./assets/index-CrZMZi7T.js"></script>
 </head>
 <body>
   <div id="app">
