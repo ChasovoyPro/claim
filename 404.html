@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404: страница не найдена</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1120" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%234F46E5' stroke-width='4'/%3E%3Ccircle cx='16' cy='6' r='3.2' fill='%23F59E0B'/%3E%3C/svg%3E">
+  <link rel="preload" href="https://chasovoy.pro/fonts/onest.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
+  <style>
+    @font-face { font-family: "Onest"; src: url("https://chasovoy.pro/fonts/onest.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+    :root {
+      --bg: #F8FAFC; --text: #0F172A; --muted: #475569; --line: #E2E8F0;
+      --primary: #4F46E5; --primary-hover: #4338CA; --on-primary: #FFFFFF; --accent: #F59E0B;
+      --glow-a: rgba(79, 70, 229, .10); --glow-b: rgba(245, 158, 11, .10); --dot: rgba(15, 23, 42, .07);
+    }
+    [data-theme="dark"] {
+      --bg: #0B1120; --text: #F8FAFC; --muted: #CBD5E1; --line: #1E293B;
+      --primary: #818CF8; --primary-hover: #A5B4FC; --on-primary: #0B1120; --accent: #FBBF24;
+      --glow-a: rgba(129, 140, 248, .16); --glow-b: rgba(251, 191, 36, .10); --dot: rgba(248, 250, 252, .07);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0B1120; --text: #F8FAFC; --muted: #CBD5E1; --line: #1E293B;
+        --primary: #818CF8; --primary-hover: #A5B4FC; --on-primary: #0B1120; --accent: #FBBF24;
+        --glow-a: rgba(129, 140, 248, .16); --glow-b: rgba(251, 191, 36, .10); --dot: rgba(248, 250, 252, .07);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { color-scheme: light dark; }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 32px 24px;
+      background-color: var(--bg); color: var(--text);
+      background-image:
+        radial-gradient(60rem 38rem at 12% -8%, var(--glow-a), transparent 62%),
+        radial-gradient(52rem 34rem at 108% 112%, var(--glow-b), transparent 60%),
+        radial-gradient(var(--dot) 1px, transparent 1.4px);
+      background-size: auto, auto, 28px 28px;
+      font: 400 clamp(1.0625rem, 1rem + .25vw, 1.1875rem)/1.55 "Onest", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: 100%; max-width: 38rem; text-align: center; display: grid; justify-items: center; gap: 0; }
+
+    .digits {
+      display: flex; align-items: center; justify-content: center; gap: .02em;
+      font-weight: 700; font-size: clamp(7.5rem, 33vw, 16rem); line-height: .86; letter-spacing: -.05em;
+      color: var(--primary); user-select: none;
+    }
+    .zero { width: .62em; height: .81em; overflow: visible; flex: none; }
+    .zero .ring { fill: none; stroke: currentColor; stroke-width: 15; }
+    .zero .dot { fill: var(--accent); }
+
+    h1 { margin: clamp(1.25rem, 3vw, 2rem) 0 0; font-weight: 600; letter-spacing: -.03em; line-height: 1.08; font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); }
+    .lead { margin: 1rem 0 0; max-width: 30rem; color: var(--muted); }
+    .path { margin: 1.5rem 0 0; max-width: 100%; display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .9rem; border: 1px solid var(--line); border-radius: 999px;
+            font-size: .875rem; color: var(--muted); }
+    .path code { font: 500 .875rem/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--text); overflow-wrap: anywhere; word-break: break-all; }
+    .actions { margin-top: 2rem; display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 28px; border-radius: 20px; border: 1px solid transparent;
+           font: 600 1rem/1 "Onest", system-ui, sans-serif; text-decoration: none; cursor: pointer; transition: background-color .15s, transform .15s, border-color .15s; }
+    .btn.primary { background: var(--primary); color: var(--on-primary); }
+    .btn.primary:hover { background: var(--primary-hover); }
+    .btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+    .btn.ghost:hover { border-color: var(--primary); }
+    .btn:active { transform: translateY(1px); }
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 20px; }
+    .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    [hidden] { display: none !important; }
+    @media (max-width: 420px) { .btn { width: 100%; } .actions { width: 100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="digits" aria-hidden="true">
+      <span>4</span>
+      <svg class="zero" viewBox="0 0 120 160" focusable="false">
+        <ellipse class="ring" cx="60" cy="80" rx="43" ry="63"/>
+        <circle class="dot" id="dot" r="10" cx="60" cy="17">
+          <animateMotion id="orbit" dur="9s" repeatCount="indefinite" path="M0,0 a43,63 0 0,1 0,126 a43,63 0 0,1 0,-126" rotate="0"/>
+        </circle>
+      </svg>
+      <span>4</span>
+    </div>
+    <h1><span class="sr">Ошибка 404. </span>Такой страницы нет</h1>
+    <p class="lead">Возможно, ссылка устарела или в адресе опечатка. Проверьте адрес или вернитесь на главную.</p>
+    <p class="path" id="path" hidden><span>Адрес</span><code id="where"></code></p>
+    <div class="actions">
+      <a class="btn primary" href="/">На главную</a>
+      <button class="btn ghost" type="button" id="back" hidden>Назад</button>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var w = document.getElementById("where");
+      if (w && location.pathname) { w.textContent = location.pathname.slice(0, 120); document.getElementById("path").hidden = false; }
+      var b = document.getElementById("back");
+      if (b && history.length > 1) { b.hidden = false; b.onclick = function () { history.back(); }; }
+      if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        var o = document.getElementById("orbit"); if (o) o.parentNode.removeChild(o);
+      }
+    })();
+  </script>
+</body>
+</html>
