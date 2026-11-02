@@ -126,8 +126,19 @@
     }
     #tradeOverview { width: 100%; aspect-ratio: 5 / 3; border: 2px solid #1a0f09; border-radius: 10px; overflow: hidden; box-sizing: border-box; }
     #tradeOverview svg { display: block; width: 100%; height: 100%; }
+    #finale { width: min(100%, 720px); box-sizing: border-box; padding: 10px 12px 18px; gap: 10px; }
+    #finale h2 { margin: 2px 0; color: #ffe3a0; }
+    #finaleArt { width: 100%; aspect-ratio: 5 / 3; overflow: hidden; border: 3px solid #1a0f09; border-radius: 12px; background: #1c1110; box-shadow: 0 5px 0 #1a0f09; }
+    #finaleArt svg { display: block; width: 100%; height: 100%; }
+    #finaleCaption { box-sizing: border-box; width: 100%; min-height: 5.2em; margin: 0; padding: 14px 16px; border: 2px solid #1a0f09; border-radius: 12px; background: #3a281b; font-size: 1.1rem; line-height: 1.45; text-align: left; }
+    #finaleProgress { margin: 0; color: #d5bda0; font-size: .9rem; }
+    #finaleNext { min-width: 180px; background: linear-gradient(#c9772a, #a5561a); border: 3px solid #3b2216; box-shadow: inset 0 2px 0 #ffc47a, 0 5px 0 #3b2216; }
+    @media (max-width: 520px) {
+      #finale { padding-inline: 8px; }
+      #finaleCaption { min-height: 6.6em; padding: 12px; font-size: 1rem; }
+    }
   </style>
-  <script type="module" crossorigin src="./assets/index-D56qUe2o.js"></script>
+  <script type="module" crossorigin src="./assets/index-CVQAta4h.js"></script>
 </head>
 <body>
   <div id="app">
@@ -293,6 +304,13 @@
       <div id="houseList"></div>
       <div id="houseCard" hidden></div>
       <button id="houseBack">В город</button>
+    </section>
+    <section id="finale" hidden aria-labelledby="finaleTitle">
+      <h2 id="finaleTitle">Последний налёт</h2>
+      <div id="finaleArt" role="img" aria-live="polite"></div>
+      <p id="finaleCaption"></p>
+      <p id="finaleProgress"></p>
+      <button id="finaleNext">Дальше</button>
     </section>
   </div>
   <div id="dialog" hidden>
