@@ -67,8 +67,57 @@
     #dialog { position: fixed; inset: 0; background: rgba(0, 0, 0, .55); display: flex; align-items: flex-end; justify-content: center; }
     #dialogBox { width: min(100%, 640px); box-sizing: border-box; background: #3a281b; border-radius: 14px 14px 0 0; padding: 20px; text-align: left; }
     #dialogText { font-size: 1.2rem; line-height: 1.4; margin: 0 0 12px; }
+    #trade { max-width: 640px; box-sizing: border-box; padding: 8px 12px; gap: 10px; }
+    #trade h2, #trade p { margin: 4px 0; }
+    #tradeWork, .trade-lot { box-sizing: border-box; width: 100%; padding: 12px 14px; border: 2px solid #1a0f09; border-radius: 12px; background: #3a281b; box-shadow: inset 0 1px 0 #715033, 0 3px 0 #1a0f09; }
+    #tradeWorkTitle { margin: 2px 0 10px; color: #ffe3a0; font-size: 1.15rem; }
+    #tradeLots { width: 100%; display: grid; gap: 12px; }
+    .trade-lot h3 { margin: 0 0 8px; color: #ffd27a; font-size: 1.1rem; }
+    .trade-lot[data-active="true"] { border-color: #b5803e; }
+    .trade-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
+    #trade button { border: 2px solid #1a0f09; box-shadow: inset 0 1px 0 #e6a355, inset 0 -3px 0 #7a3f12; }
+    #trade button:focus-visible { outline: 3px solid #ffe3a0; outline-offset: 3px; }
+    .trade-actions button { flex: 1 1 150px; max-width: 260px; margin: 0; padding: 10px 12px; font-size: 1rem; }
+    .trade-actions button[data-sell] { background: #78512e; box-shadow: inset 0 1px 0 #ad8050, inset 0 -3px 0 #4c301d; }
+    #trade button:disabled { opacity: .6; }
+    #tradeAnimation { display: block; width: min(100%, 380px); margin: 0 auto 12px; border-radius: 8px; background: #2b1d14; }
+    #tradeProgress { display: block; box-sizing: border-box; width: 100%; height: 12px; margin: 8px 0; border: 2px solid #1a0f09; border-radius: 6px; overflow: hidden; appearance: none; background: #21160e; accent-color: #f0bf4f; }
+    #tradeProgress::-webkit-progress-bar { background: #21160e; }
+    #tradeProgress::-webkit-progress-value { background: linear-gradient(#ffe3a0, #d89230); border-radius: 3px; }
+    #tradeProgress::-moz-progress-bar { background: linear-gradient(#ffe3a0, #d89230); border-radius: 3px; }
+    #tradeTimer, #tradeInfo, #tradeContinue { font-size: .9rem; line-height: 1.4; }
+    #tradeTimer { color: #ffe3a0; font-variant-numeric: tabular-nums; }
+    #tradeContinue { color: #d5bda0; }
+    #tradeReport { color: #ffd27a; }
+    #tradeReport:empty { display: none; }
+    .processing .sale-scales, .selling .anvil { display: none; }
+    [data-processed="true"] .sale-raw, [data-processed="false"] .sale-refined { display: none; }
+    .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { transform-box: view-box; }
+    .trade-hammer { transform-origin: 225px 87px; animation: forge-hammer 1.25s infinite; }
+    .trade-sparks { transform-origin: 148px 100px; opacity: 0; animation: forge-sparks 1.25s linear infinite; }
+    .trade-metal { transform-origin: 148px 112px; animation: forge-metal 1.25s linear infinite; }
+    .trade-scale-arm { transform-origin: 160px 49px; animation: sale-balance 2.8s ease-in-out infinite; }
+    .trade-pan { animation: sale-pan 2.8s ease-in-out infinite; }
+    .trade-pan-left { transform-origin: 100px 56px; }
+    .trade-pan-right { transform-origin: 220px 56px; }
+    @keyframes forge-hammer {
+      0%, 100% { transform: rotate(45deg); animation-timing-function: ease-out; }
+      22% { transform: rotate(55deg); animation-timing-function: cubic-bezier(.55, 0, .95, .55); }
+      43% { transform: rotate(0deg); animation-timing-function: ease-out; }
+      52% { transform: rotate(9deg); animation-timing-function: ease-in-out; }
+      68% { transform: rotate(28deg); animation-timing-function: ease-out; }
+    }
+    @keyframes forge-sparks { 0%, 42%, 73%, 100% { opacity: 0; } 43% { opacity: 1; transform: scale(.45); } 70% { opacity: 0; transform: scale(1.3) translateY(6px); } }
+    @keyframes forge-metal { 0%, 42%, 65%, 100% { transform: scale(1); } 45% { transform: scale(1.06, .86); } }
+    @keyframes sale-balance { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+    @keyframes sale-pan { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { animation: none; }
+      .trade-hammer { transform: rotate(30deg); }
+      .trade-sparks { opacity: 0; }
+    }
   </style>
-  <script type="module" crossorigin src="./assets/index-BeH7uwjD.js"></script>
+  <script type="module" crossorigin src="./assets/index-BZaXiXO0.js"></script>
 </head>
 <body>
   <div id="app">
@@ -76,10 +125,105 @@
       <div id="hud"></div>
       <div id="chapter"><span id="chapterTxt"></span><div id="chapterBar"><i id="chapterFill"></i></div></div>
       <div id="goal"></div>
-      <div id="meta"><button id="fameBtn" hidden>Слава</button><button id="houseBtn" hidden>Дом</button></div>
+      <div id="meta"><button id="fameBtn" hidden>Слава</button><button id="houseBtn" hidden>Дом</button><button id="tradeBtn" hidden>Добыча и сделки</button></div>
       <div id="townScene"></div>
       <div id="panel" hidden></div>
       <div id="credit">© 2026 ChasovoyPro · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · claim.chasovoy.pro</div>
+    </section>
+    <section id="trade" hidden>
+      <h2 id="tradeTitle">Прилавок Ионы</h2>
+      <p id="tradeInfo"></p>
+      <div id="tradeWork" hidden>
+        <h3 id="tradeWorkTitle"></h3>
+        <svg id="tradeAnimation" viewBox="0 0 320 180" role="img" aria-label="Обработка металла и подготовка сделки">
+          <g stroke="#28180f" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="2" y="2" width="316" height="176" rx="8" fill="#493020" stroke-width="3"/>
+            <path d="M4 42h312M4 82h312M4 122h312M62 4v38m84 0v40m96-78v38M51 82v40m180-40v40" fill="none" stroke="#332116" stroke-width="2"/>
+            <path d="M18 23h29m127 37h39M258 98h39M81 100h24M187 20h19" stroke="#62422b" stroke-width="2"/>
+            <path d="M3 151h314v19H3z" fill="#825330" stroke-width="3"/>
+            <path d="M7 154h306M20 163h65m144 0h63" stroke="#ba8249" stroke-width="2"/>
+            <g class="anvil">
+              <path d="M22 117V63q0-20 22-20t22 20v54z" fill="#75604b" stroke-width="3"/>
+              <path d="M31 111V70q0-18 13-18t13 18v41z" fill="#261911" stroke-width="3"/>
+              <path d="M34 106q-4-10 4-20l4 8 7-22q13 19 5 34z" fill="#cb6f29" stroke="none"/>
+              <path d="M40 107q-4-10 6-19l5 19" fill="#f4bb50" stroke="none"/>
+              <path d="M21 72h10m26 0h10M20 91h10m27 0h10M35 47l5 8m15-7-6 9" stroke="#423024" stroke-width="2"/>
+              <path d="M23 117h42v8H23z" fill="#5a4030" stroke-width="3"/>
+              <ellipse cx="155" cy="151" rx="69" ry="7" fill="#28180f" stroke="none" opacity=".5"/>
+              <path d="M119 133l-5 19h81l-6-19z" fill="#775038" stroke-width="3"/>
+              <path d="M127 137v12m56-12v12" stroke="#a47243" stroke-width="2"/>
+              <path d="M79 111h132l-13 14h-29l-7 13h22v8h-61v-8h21l-8-13h-28z" fill="#62696b" stroke-width="3"/>
+              <path d="M79 111h132l-9 6H92z" fill="#a2aaa4" stroke-width="2"/>
+              <path d="M145 124h17l-8 14z" fill="#414c4f" stroke="none"/>
+              <path d="M173 110l55 20m-55-17 52 8" fill="none" stroke="#202626" stroke-width="5"/>
+              <path d="M179 113l44 16" stroke="#85877a" stroke-width="1.5"/>
+              <g class="trade-metal" stroke-width="2.5">
+                <path d="M132 102l9-7 23 2 9 8-6 7h-35z" fill="#e9a439"/>
+                <path d="M132 102l12 2 20-7m-20 7-2 8m2-8 23 2" fill="none" stroke="#ffd67a" stroke-width="2"/>
+              </g>
+              <g class="trade-hammer">
+                <path d="M147 81l87 7-1 10-87-9z" fill="#a5703d" stroke-width="3"/>
+                <path d="M171 85l48 4" stroke="#d2a064" stroke-width="2"/>
+                <path d="M132 73l30 1 3 7-2 18-30-1-3-8z" fill="#83918e" stroke-width="3"/>
+                <path d="M135 77l22 1m-23 15h25" stroke="#c5c7ac" stroke-width="2"/>
+                <path d="M218 83q6-4 9 1l5 5-2 11-12-1-3-8z" fill="#bc8a50" stroke-width="2.5"/>
+                <path d="M221 89l7 2m-8 3 7 2" stroke="#765034" stroke-width="1.5"/>
+                <path d="M230 84l20 7-5 18-17-11z" fill="#5d6c67" stroke-width="3"/>
+                <path d="M233 87l-3 11" stroke="#98a08a" stroke-width="2"/>
+              </g>
+              <g class="trade-sparks" fill="none" stroke="#ffe3a0" stroke-width="2.5">
+                <path d="M125 93l-10-7m16-4-5-11m43 21 12-7m-14-8 4-10M147 81l-1-12"/>
+                <path d="M115 106l-7 1m74-4 9 2" stroke="#eaa13e"/>
+              </g>
+              <path d="M260 146l-3-16 12-4 11 9-3 11z" fill="#a67a44" stroke-width="2.5"/>
+              <path d="M259 133l10 2 8-1m-8 1-2 10" fill="none" stroke="#e5b45b" stroke-width="2"/>
+            </g>
+            <g class="sale-scales">
+              <ellipse cx="160" cy="150" rx="75" ry="7" fill="#28180f" stroke="none" opacity=".5"/>
+              <path d="M128 138h64l9 12h-82z" fill="#91623b" stroke-width="3"/>
+              <path d="M143 137l12-14V48h10v75l12 14z" fill="#bc8b45" stroke-width="3"/>
+              <path d="M159 57v65m-16 19h36" stroke="#f0cf83" stroke-width="2.5"/>
+              <circle cx="160" cy="41" r="5" fill="#dfb860" stroke-width="2.5"/>
+              <g class="trade-scale-arm">
+                <path d="M97 56l9-7 47-3 7-5 7 5 47 3 9 7-63-5z" fill="#d6ac62" stroke-width="2.5"/>
+                <g class="trade-pan trade-pan-left">
+                  <path d="M100 56l-24 56m24-56 24 56" fill="none" stroke="#bd9557" stroke-width="2"/>
+                  <g class="sale-refined" stroke-width="2">
+                    <path d="M82 109l4-13 24-2 7 15z" fill="#dc9d32"/>
+                    <path d="M86 96l8 4 16-6m-16 6-2 9" fill="none" stroke="#ffe49b"/>
+                  </g>
+                  <g class="sale-raw" stroke-width="2">
+                    <path d="M82 109l-1-8 7-7 9 3 6 12zM99 110l-3-11 10-7 11 9-2 9z" fill="#dca13d"/>
+                    <path d="M85 100l5 3 5-3m7 1 5-4 5 5" fill="none" stroke="#ffe49b"/>
+                  </g>
+                  <path d="M74 112h52q-6 17-26 17t-26-17z" fill="#b47e3c" stroke-width="2.5"/>
+                  <path d="M80 115h40" stroke="#f0cf83" stroke-width="2"/>
+                </g>
+                <g class="trade-pan trade-pan-right">
+                  <path d="M220 56l-24 56m24-56 24 56" fill="none" stroke="#bd9557" stroke-width="2"/>
+                  <path d="M211 99h18l4 13h-26z" fill="#72716a" stroke-width="2.5"/>
+                  <path d="M215 98v-4h10v4" fill="none" stroke="#a6a38a" stroke-width="2.5"/>
+                  <path d="M214 103h5" stroke="#b8b49c" stroke-width="2"/>
+                  <path d="M194 112h52q-6 17-26 17t-26-17z" fill="#b47e3c" stroke-width="2.5"/>
+                  <path d="M200 115h40" stroke="#f0cf83" stroke-width="2"/>
+                </g>
+              </g>
+              <circle cx="160" cy="49" r="4" fill="#ffe3a0" stroke-width="2"/>
+              <path d="M252 131l35-4 12 17-39 3z" fill="#c7ad7a" stroke-width="2.5"/>
+              <path d="M260 134l21-3m-18 7 21-3m-18 7 11-2" stroke="#836240" stroke-width="1.5"/>
+              <g fill="#d6a243" stroke-width="2"><path d="M31 140v6q10 6 20 0v-6"/><ellipse cx="41" cy="140" rx="10" ry="4"/><path d="M36 132v6q10 6 20 0v-6"/><ellipse cx="46" cy="132" rx="10" ry="4"/></g>
+              <path d="M41 131l9 1" stroke="#ffe3a0" stroke-width="2"/>
+            </g>
+          </g>
+        </svg>
+        <progress id="tradeProgress" max="1" value="0" aria-label="Готовность заказа"></progress>
+        <p id="tradeTimer" role="timer" aria-live="off"></p>
+        <p id="tradeContinue">Можно вернуться в город — заказ продолжится.</p>
+      </div>
+      <p id="tradeReport" role="status"></p>
+      <button id="tradeDefense" hidden>Защитить ломбард</button>
+      <div id="tradeLots"></div>
+      <button id="tradeBack">В город</button>
     </section>
     <section id="duel" hidden>
       <div id="foe"></div>
