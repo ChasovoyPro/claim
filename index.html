@@ -124,8 +124,10 @@
       .trade-hammer { transform: rotate(24deg); }
       .trade-sparks { opacity: 0; }
     }
+    #tradeOverview { width: 100%; aspect-ratio: 5 / 3; border: 2px solid #1a0f09; border-radius: 10px; overflow: hidden; box-sizing: border-box; }
+    #tradeOverview svg { display: block; width: 100%; height: 100%; }
   </style>
-  <script type="module" crossorigin src="./assets/index-Dubr04Hy.js"></script>
+  <script type="module" crossorigin src="./assets/index-D56qUe2o.js"></script>
 </head>
 <body>
   <div id="app">
@@ -141,6 +143,7 @@
     <section id="trade" hidden>
       <h2 id="tradeTitle">Прилавок Ионы</h2>
       <p id="tradeInfo"></p>
+      <div id="tradeOverview" hidden role="img" aria-label="Ломбард Ионы: прилавок, книга сделок и вход"></div>
       <div id="tradeWork" hidden>
         <h3 id="tradeWorkTitle"></h3>
         <svg id="tradeAnimation" viewBox="0 0 320 180" role="img" aria-label="Обработка металла и подготовка сделки">
