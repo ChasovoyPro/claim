@@ -92,8 +92,9 @@
     #tradeReport:empty { display: none; }
     .processing .sale-scales, .selling .anvil { display: none; }
     [data-processed="true"] .sale-raw, [data-processed="false"] .sale-refined { display: none; }
-    .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { transform-box: view-box; }
-    .trade-hammer { transform-origin: 225px 87px; animation: forge-hammer 1.25s infinite; }
+    .trade-arm-shoulder, .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { transform-box: view-box; }
+    .trade-arm-shoulder { transform-origin: 249px 76px; animation: forge-shoulder 1.25s infinite; }
+    .trade-hammer { transform-origin: 232px 97px; animation: forge-hammer 1.25s infinite; }
     .trade-sparks { transform-origin: 148px 100px; opacity: 0; animation: forge-sparks 1.25s linear infinite; }
     .trade-metal { transform-origin: 148px 112px; animation: forge-metal 1.25s linear infinite; }
     .trade-scale-arm { transform-origin: 160px 49px; animation: sale-balance 2.8s ease-in-out infinite; }
@@ -101,23 +102,30 @@
     .trade-pan-left { transform-origin: 100px 56px; }
     .trade-pan-right { transform-origin: 220px 56px; }
     @keyframes forge-hammer {
-      0%, 100% { transform: rotate(45deg); animation-timing-function: ease-out; }
-      22% { transform: rotate(55deg); animation-timing-function: cubic-bezier(.55, 0, .95, .55); }
+      0%, 100% { transform: rotate(28deg); animation-timing-function: ease-out; }
+      22% { transform: rotate(35deg); animation-timing-function: cubic-bezier(.55, 0, .95, .55); }
       43% { transform: rotate(0deg); animation-timing-function: ease-out; }
-      52% { transform: rotate(9deg); animation-timing-function: ease-in-out; }
-      68% { transform: rotate(28deg); animation-timing-function: ease-out; }
+      52% { transform: rotate(6deg); animation-timing-function: ease-in-out; }
+      68% { transform: rotate(18deg); animation-timing-function: ease-out; }
+    }
+    @keyframes forge-shoulder {
+      0%, 100% { transform: rotate(3deg); animation-timing-function: ease-out; }
+      22% { transform: rotate(5deg); animation-timing-function: cubic-bezier(.55, 0, .95, .55); }
+      43% { transform: rotate(0deg); animation-timing-function: ease-out; }
+      52% { transform: rotate(1deg); animation-timing-function: ease-in-out; }
+      68% { transform: rotate(2deg); animation-timing-function: ease-out; }
     }
     @keyframes forge-sparks { 0%, 42%, 73%, 100% { opacity: 0; } 43% { opacity: 1; transform: scale(.45); } 70% { opacity: 0; transform: scale(1.3) translateY(6px); } }
     @keyframes forge-metal { 0%, 42%, 65%, 100% { transform: scale(1); } 45% { transform: scale(1.06, .86); } }
     @keyframes sale-balance { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
     @keyframes sale-pan { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } }
     @media (prefers-reduced-motion: reduce) {
-      .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { animation: none; }
-      .trade-hammer { transform: rotate(30deg); }
+      .trade-arm-shoulder, .trade-hammer, .trade-sparks, .trade-metal, .trade-scale-arm, .trade-pan { animation: none; }
+      .trade-hammer { transform: rotate(24deg); }
       .trade-sparks { opacity: 0; }
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BZaXiXO0.js"></script>
+  <script type="module" crossorigin src="./assets/index-Dubr04Hy.js"></script>
 </head>
 <body>
   <div id="app">
@@ -149,34 +157,72 @@
               <path d="M40 107q-4-10 6-19l5 19" fill="#f4bb50" stroke="none"/>
               <path d="M21 72h10m26 0h10M20 91h10m27 0h10M35 47l5 8m15-7-6 9" stroke="#423024" stroke-width="2"/>
               <path d="M23 117h42v8H23z" fill="#5a4030" stroke-width="3"/>
+              <!-- Derek stands behind the anvil; both arms meet the shirt at their shoulders. -->
+              <g class="trade-smith" stroke-width="2.5">
+                <ellipse cx="260" cy="151" rx="34" ry="4" fill="#28180f" stroke="none" opacity=".5"/>
+                <path d="M240 126l4 22h13l2-20 7 20h14l-2-24z" fill="#414946"/>
+                <path d="M244 144l-7 4-1 4h22v-8zm23 0-3 8h23l-2-5-6-3z" fill="#3c2a20"/>
+                <path d="M251 59l-1 12 15 8 6-11-7-13z" fill="#bc8454"/>
+                <path d="M242 68l9-3 10 7 8-7 10 8 5 29-6 27-40-1-6-31z" fill="#63716a"/>
+                <path d="M243 70l8 9 10-7 7 9 6-12" fill="none" stroke="#a3aa8d" stroke-width="2"/>
+                <path d="M247 77l-4 19-3 39q19 9 41 0l-5-40-6-18-8 5z" fill="#90603b"/>
+                <path d="M247 68l8 14m17-13-7 13" stroke="#c0965b" stroke-width="4"/>
+                <path d="M247 95q12 5 27 0m-24 12 1 15 17 1 3-15z" fill="#7b4e31" stroke-width="1.8"/>
+                <path d="M253 110l15 1m-25 19 11 3m18-4 4-1" fill="none" stroke="#b48551" stroke-width="1.5"/>
+                <circle cx="254" cy="82" r="1.7" fill="#d6b56e" stroke="none"/>
+                <circle cx="266" cy="82" r="1.7" fill="#d6b56e" stroke="none"/>
+                <!-- Far arm bends at the elbow to hold the tongs below the striking hand. -->
+                <path d="M276 79q8 2 10 12l3 14q1 8-6 12l-49 8-4-12 44-9-5-16z" fill="#c39360"/>
+                <path d="M275 75q10 2 11 13l1 9-15 4-5-13z" fill="#63716a"/>
+                <path d="M271 94l15-3 2 7-15 4z" fill="#a3aa8d" stroke-width="1.8"/>
+                <path d="M277 106l3 6m-38 3 24-4" fill="none" stroke="#a27248" stroke-width="1.5"/>
+                <!-- Short hair, strong nose and beard read clearly at mobile size. -->
+                <path d="M246 32q15-8 24 4l1 13-5 13-14 1-11-7 1-7-6-3 7-8z" fill="#d3a06a"/>
+                <path d="M244 38l-1-9q5-7 17-5l12 7 2 15-8 2-5-13-9-1z" fill="#51443a"/>
+                <path d="M246 30l13-2 7 5" fill="none" stroke="#8e8067" stroke-width="2"/>
+                <path d="M244 51l9 2 7-4 6 1-2 13-10 4-12-9z" fill="#665042"/>
+                <path d="M244 51l7-2 7 4-7 2z" fill="#49392e" stroke-width="1"/>
+                <path d="M244 40l7 1" stroke-width="2"/>
+                <path d="M245 44h2" stroke-width="2.5"/>
+                <path d="M265 44q8-4 7 4t-6 5" fill="#c39360" stroke-width="1.7"/>
+                <path d="M249 59l6 2" stroke="#9b7b58" stroke-width="1.5"/>
+              </g>
               <ellipse cx="155" cy="151" rx="69" ry="7" fill="#28180f" stroke="none" opacity=".5"/>
               <path d="M119 133l-5 19h81l-6-19z" fill="#775038" stroke-width="3"/>
               <path d="M127 137v12m56-12v12" stroke="#a47243" stroke-width="2"/>
               <path d="M79 111h132l-13 14h-29l-7 13h22v8h-61v-8h21l-8-13h-28z" fill="#62696b" stroke-width="3"/>
               <path d="M79 111h132l-9 6H92z" fill="#a2aaa4" stroke-width="2"/>
               <path d="M145 124h17l-8 14z" fill="#414c4f" stroke="none"/>
-              <path d="M173 110l55 20m-55-17 52 8" fill="none" stroke="#202626" stroke-width="5"/>
-              <path d="M179 113l44 16" stroke="#85877a" stroke-width="1.5"/>
+              <path d="M169 105l9 1 57 18m-65-12 9-2 55 6" fill="none" stroke="#202626" stroke-width="4"/>
+              <path d="M179 108l52 15" stroke="#85877a" stroke-width="1.3"/>
+              <circle cx="181" cy="109" r="2.5" fill="#a4a38c" stroke-width="1.5"/>
+              <path d="M225 112l9 1 5 5-3 9-11-1-4-5z" fill="#bd8e56" stroke-width="2.5"/>
+              <path d="M225 117l10 3m-10 1 9 3" stroke="#785133" stroke-width="1.5"/>
               <g class="trade-metal" stroke-width="2.5">
                 <path d="M132 102l9-7 23 2 9 8-6 7h-35z" fill="#e9a439"/>
                 <path d="M132 102l12 2 20-7m-20 7-2 8m2-8 23 2" fill="none" stroke="#ffd67a" stroke-width="2"/>
               </g>
-              <g class="trade-hammer">
-                <path d="M147 81l87 7-1 10-87-9z" fill="#a5703d" stroke-width="3"/>
-                <path d="M171 85l48 4" stroke="#d2a064" stroke-width="2"/>
-                <path d="M132 73l30 1 3 7-2 18-30-1-3-8z" fill="#83918e" stroke-width="3"/>
-                <path d="M135 77l22 1m-23 15h25" stroke="#c5c7ac" stroke-width="2"/>
-                <path d="M218 83q6-4 9 1l5 5-2 11-12-1-3-8z" fill="#bc8a50" stroke-width="2.5"/>
-                <path d="M221 89l7 2m-8 3 7 2" stroke="#765034" stroke-width="1.5"/>
-                <path d="M230 84l20 7-5 18-17-11z" fill="#5d6c67" stroke-width="3"/>
-                <path d="M233 87l-3 11" stroke="#98a08a" stroke-width="2"/>
+              <!-- Nested rig: shoulder → upper arm → elbow → forearm, grip and hammer.
+                   At zero rotation the hammer face meets the metal at y=99. -->
+              <g class="trade-arm-shoulder" stroke-width="2.5">
+                <path d="M248 67q11 3 9 13l-13 23q-7 8-17 1-6-4-2-13l13-20z" fill="#63716a"/>
+                <path d="M237 78l-6 15m15-19 3 4" fill="none" stroke="#8e9a82" stroke-width="2"/>
+                <g class="trade-hammer">
+                  <path d="M234 89q8 3 6 11-1 7-11 6l-24-8-3-8 7-7 23 7z" fill="#c39360"/>
+                  <path d="M216 91l12 7" stroke="#a27248" stroke-width="1.5"/>
+                  <path d="M228 87l13 6-3 10-13-6z" fill="#a3aa8d" stroke-width="2"/>
+                  <path d="M147 81l68 5-1 10-68-7z" fill="#a5703d" stroke-width="3"/>
+                  <path d="M171 85l28 2" stroke="#d2a064" stroke-width="2"/>
+                  <path d="M132 73l30 1 3 7-2 18-30-1-3-8z" fill="#83918e" stroke-width="3"/>
+                  <path d="M135 77l22 1m-23 15h25" stroke="#c5c7ac" stroke-width="2"/>
+                  <path d="M201 83q5-4 9 1l5 5-2 11-12-1-3-8z" fill="#d0a06b"/>
+                  <path d="M202 89l8 2m-8 3 7 2" stroke="#865b38" stroke-width="1.5"/>
+                </g>
               </g>
               <g class="trade-sparks" fill="none" stroke="#ffe3a0" stroke-width="2.5">
                 <path d="M125 93l-10-7m16-4-5-11m43 21 12-7m-14-8 4-10M147 81l-1-12"/>
                 <path d="M115 106l-7 1m74-4 9 2" stroke="#eaa13e"/>
               </g>
-              <path d="M260 146l-3-16 12-4 11 9-3 11z" fill="#a67a44" stroke-width="2.5"/>
-              <path d="M259 133l10 2 8-1m-8 1-2 10" fill="none" stroke="#e5b45b" stroke-width="2"/>
             </g>
             <g class="sale-scales">
               <ellipse cx="160" cy="150" rx="75" ry="7" fill="#28180f" stroke="none" opacity=".5"/>
